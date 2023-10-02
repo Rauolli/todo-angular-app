@@ -23,8 +23,8 @@ export class AppComponent implements OnInit{
   }
 
   todos: Itodo[] = [];
-
   newTodo = '';
+  placeholder = 'Enter a new Todo!';
 
   toggleTodo(index: number){
     this.todos[index].done = !this.todos[index].done;
@@ -37,7 +37,8 @@ export class AppComponent implements OnInit{
   }
 
   setTodo(event: KeyboardEvent){
-    this.newTodo = (event.target as HTMLInputElement).value;
+    const input = (event.target as HTMLInputElement)
+    this.newTodo = input.value;
   }
 
   addTodo(){
@@ -45,7 +46,8 @@ export class AppComponent implements OnInit{
       this.todos.push({todo: this.newTodo, done: false});
     }
     this.storeTodos();
-    this.logging(this.todos);
+    this.newTodo = '';
+    //this.logging(this.todos);
   }
 
   countOpenTodos(){
